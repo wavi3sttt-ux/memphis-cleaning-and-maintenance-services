@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contactFormSchema } from "@/lib/schemas";
-import { CONTACT } from "@/lib/config";
+
+const BUSINESS_INBOX = "cleaningservices.memphis@gmail.com";
+const SENDER = "Memphis Property Services Website <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -15,17 +17,19 @@ export async function POST(request: Request) {
   }
 
   const values = parsed.data;
-  const toAddress = process.env.CONTACT_TO_EMAIL || CONTACT.email;
+  const toAddress = process.env.CONTACT_TO_EMAIL || BUSINESS_INBOX;
   const apiKey = process.env.RESEND_API_KEY;
 
   const summary = `
-New contact message
-
 Name: ${values.name}
 Email: ${values.email}
 Subject: ${values.subject}
 
+Message:
 ${values.message}
+
+---
+Submitted via memphispropertyservices.co.uk
 `.trim();
 
   if (!apiKey) {
@@ -38,12 +42,10 @@ ${values.message}
   try {
     const resend = new Resend(apiKey);
     await resend.emails.send({
-      from:
-        process.env.RESEND_FROM_EMAIL ||
-        "Memphis Cleaning & Maintenance <onboarding@resend.dev>",
+      from: process.env.RESEND_FROM_EMAIL || SENDER,
       to: toAddress,
       replyTo: values.email,
-      subject: `New contact message — ${values.subject}`,
+      subject: `New enquiry from ${values.name} — Memphis Property Services`,
       text: summary,
     });
     return NextResponse.json({ ok: true });

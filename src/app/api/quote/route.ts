@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { quoteFormSchema } from "@/lib/schemas";
-import { CONTACT } from "@/lib/config";
+
+const BUSINESS_INBOX = "cleaningservices.memphis@gmail.com";
+const SENDER = "Memphis Property Services Website <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -15,20 +17,23 @@ export async function POST(request: Request) {
   }
 
   const values = parsed.data;
-  const toAddress = process.env.QUOTE_TO_EMAIL || CONTACT.email;
+  const toAddress = process.env.QUOTE_TO_EMAIL || BUSINESS_INBOX;
   const apiKey = process.env.RESEND_API_KEY;
 
   const summary = `
-New quote request
-
 Name: ${values.name}
-Company / property: ${values.company || "—"}
+Company: ${values.company || "Not provided"}
 Email: ${values.email}
-Phone: ${values.phone || "—"}
+Phone: ${values.phone || "Not provided"}
 Property type: ${values.propertyType}
+Location: ${values.location}
 Services needed: ${values.servicesNeeded.join(", ")}
-Location / postcode: ${values.location}
-Message: ${values.message || "—"}
+
+Additional details:
+${values.message || "None provided"}
+
+---
+Submitted via memphispropertyservices.co.uk
 `.trim();
 
   if (!apiKey) {
@@ -41,12 +46,12 @@ Message: ${values.message || "—"}
   try {
     const resend = new Resend(apiKey);
     await resend.emails.send({
-      from:
-        process.env.RESEND_FROM_EMAIL ||
-        "Memphis Cleaning & Maintenance <onboarding@resend.dev>",
+      from: process.env.RESEND_FROM_EMAIL || SENDER,
       to: toAddress,
       replyTo: values.email,
-      subject: `New quote request — ${values.name}`,
+      subject: `New quote request from ${
+        values.company || values.name
+      } — Memphis Property Services`,
       text: summary,
     });
     return NextResponse.json({ ok: true });

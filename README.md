@@ -27,9 +27,9 @@ Copy `.env.example` to `.env.local` and fill in as needed. The quote form (`/api
 | Variable | Required | Description |
 | --- | --- | --- |
 | `RESEND_API_KEY` | No | [Resend](https://resend.com) API key. Without it, submissions are only logged to the server console. |
-| `RESEND_FROM_EMAIL` | No | Verified "from" address for outgoing emails. Defaults to Resend's shared testing domain (`onboarding@resend.dev`). |
-| `QUOTE_TO_EMAIL` | No | Overrides the "to" address for quote requests. Defaults to `CONTACT.email` in `src/lib/config.ts`. |
-| `CONTACT_TO_EMAIL` | No | Overrides the "to" address for general contact form messages. Defaults to `CONTACT.email` in `src/lib/config.ts`. |
+| `RESEND_FROM_EMAIL` | No | Verified "from" address for outgoing emails. Defaults to `Memphis Property Services Website <onboarding@resend.dev>` (Resend's shared testing domain — swap once the business domain is verified in Resend). |
+| `QUOTE_TO_EMAIL` | No | Overrides the "to" address for quote requests. Defaults to the business inbox `cleaningservices.memphis@gmail.com`. |
+| `CONTACT_TO_EMAIL` | No | Overrides the "to" address for general contact form messages. Defaults to the business inbox `cleaningservices.memphis@gmail.com`. |
 
 ## Learn More
 
