@@ -8,7 +8,13 @@ import { ContactSection } from "@/components/ContactSection";
 import { CareerSection } from "@/components/CareerSection";
 import { SustainabilitySection } from "@/components/SustainabilitySection";
 import { MotionSection, MotionItem } from "@/components/MotionSection";
-import { SERVICE_GROUPS, CONTACT, SITE_NAME, SITE_URL } from "@/lib/config";
+import {
+  SERVICE_GROUPS,
+  CONTACT,
+  SITE_NAME,
+  SITE_URL,
+  MOTTO_TEXT,
+} from "@/lib/config";
 
 export default function HomePage() {
   const jsonLd = {
@@ -56,15 +62,22 @@ export default function HomePage() {
           </div>
         </section>
 
-        <CtaBlock />
+        <SustainabilitySection />
 
         <ContactSection />
 
+        <CtaBlock />
+
         <CareerSection />
 
-        <SustainabilitySection />
-
-        <section id="motto" className="bg-ink py-32 md:py-40" />
+        <section
+          id="motto"
+          className="flex items-center justify-center bg-ink px-6 py-32 md:py-40"
+        >
+          <p className="font-motto text-center italic text-bg text-[clamp(2rem,6vw,5rem)] leading-tight">
+            {MOTTO_TEXT}
+          </p>
+        </section>
       </main>
       <Footer />
     </>

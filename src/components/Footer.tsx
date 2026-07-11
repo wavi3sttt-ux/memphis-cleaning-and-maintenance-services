@@ -1,5 +1,5 @@
 import { Wordmark } from "@/components/Wordmark";
-import { CONTACT, NAV_LINKS, SITE_NAME } from "@/lib/config";
+import { CONTACT, NAV_LINKS } from "@/lib/config";
 
 export function Footer() {
   return (
@@ -35,10 +35,10 @@ export function Footer() {
           </FooterColumn>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-ink/10 pt-6 text-xs font-medium tracking-wide text-muted md:flex-row md:items-center md:justify-between">
-          <p>FULLY INSURED · COSHH COMPLIANT · BIRMINGHAM, UK</p>
+        <div className="mt-16 border-t border-ink/10 pt-6 text-xs font-medium tracking-wide text-muted">
           <p>
-            © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            © {new Date().getFullYear()} Memphis Cleaning Services and
+            Maintenances Limited. All rights reserved.
           </p>
         </div>
       </div>

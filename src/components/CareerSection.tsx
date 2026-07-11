@@ -11,7 +11,7 @@ export function CareerSection() {
         <MotionSection as="div">
           <MotionItem>
             <span className="text-xs font-medium tracking-widest text-muted">
-              04 / CAREER
+              05 / CAREER
             </span>
             <h2 className="mt-3 font-black text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-tight text-ink">
               Careers

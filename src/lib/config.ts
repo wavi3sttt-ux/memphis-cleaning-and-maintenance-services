@@ -10,7 +10,7 @@ export const NAV_LINKS = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact Us" },
-  { href: "#career", label: "Career" },
+  { href: "#career", label: "Careers" },
   { href: "#sustainability", label: "Sustainability" },
 ];
 
@@ -20,8 +20,10 @@ export const HERO_HEADLINE = [
   { before: "Handled ", highlight: "properly", after: "." },
 ];
 
-export const POSITIONING =
-  "Cleaning and maintenance for residential blocks, student accommodation, and offices across Birmingham — with a trained eye for hazards on every visit.";
+export const HERO_SUBHEAD_LINE1 =
+  "A clean and maintained property is a prosperous property";
+export const HERO_SUBHEAD_LINE2 =
+  "delivered by a trusted, reliable team trained to protect the value of every site we look after";
 
 export const CALL_OUT = {
   label: "24 Hour Call Out",
@@ -42,16 +44,9 @@ export const CAREER_TEXT =
   "Want to work with us? For career opportunities, please get in touch at";
 
 export const SUSTAINABILITY_VISION =
-  "Sustainability sits at the heart of how Memphis Property Services operates. We're building the company with a long-term view of how buildings, businesses, and the environment fit together — and that starts with our own day-to-day. We recycle all cardboard, plastic, and metal across every job, reuse packaging wherever possible, and run paperless invoicing as standard. We're actively reducing our carbon footprint through smarter routing, greener product choices, and cleaner on-site practice. Our aim is a zero-to-landfill operation — and we work closely with clients, contractors, and supply partners to encourage the same standard across every property we touch. Sustainable practice isn't a bolt-on for us. It's part of how we look after the properties, people, and places we work with.";
+  "Sustainability sits at the heart of how Memphis Property Services operates. We aim to recycle all cardboard, plastic, and metal across every job, reuse packaging wherever possible, and run paperless invoicing as standard — while working to reduce our carbon footprint through smarter routing, greener product choices, and cleaner on-site practice. We're pushing towards a zero-to-landfill operation, and working closely with clients, contractors, and supply partners to hold the same standard across every property we touch. Sustainable practice isn't a bolt-on — it's built into how we look after the properties, people, and places we work with.";
 
-export const SUSTAINABILITY_COMMITMENTS = [
-  "Recycle everything — cardboard, plastic, and metal separated and recycled on every job",
-  "Reuse packaging wherever it's safe and practical",
-  "Paperless invoicing — all invoicing, reports, and documentation delivered digitally",
-  "Carbon reduction through smarter routing, greener products, and lower-impact site practice",
-  "Driving toward zero waste to landfill across our operations",
-  "Working with clients and supply partners to promote zero-to-landfill and shared sustainability standards",
-];
+export const MOTTO_TEXT = "Cleaned. Maintained. Sustained.";
 
 export type ServiceItem = {
   icon: string;

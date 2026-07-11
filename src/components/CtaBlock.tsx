@@ -3,11 +3,11 @@ export function CtaBlock() {
     <section className="bg-ink px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="font-black text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] tracking-tight text-bg">
-          Get a spec-and-quote in 12 hours.
+          Contact now and get a quote in 12 hours.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-bg/70">
           Tell us about your site and we&apos;ll come back with a scoped
-          plan and a straight-up price — no site-visit sales pitch required.
+          plan and a straight-up price.
         </p>
         <a
           href="#contact"

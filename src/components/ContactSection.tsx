@@ -7,7 +7,7 @@ export function ContactSection() {
     <section id="contact" className="px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <span className="text-xs font-medium tracking-widest text-muted">
-          03 / CONTACT
+          04 / CONTACT
         </span>
         <h2 className="mt-3 font-black text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-tight text-ink">
           Contact Us

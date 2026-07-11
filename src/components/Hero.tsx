@@ -3,7 +3,12 @@
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { HighlightedText } from "@/components/HighlightedText";
-import { HERO_HEADLINE, POSITIONING, CALL_OUT } from "@/lib/config";
+import {
+  HERO_HEADLINE,
+  HERO_SUBHEAD_LINE1,
+  HERO_SUBHEAD_LINE2,
+  CALL_OUT,
+} from "@/lib/config";
 
 export function Hero() {
   return (
@@ -25,14 +30,17 @@ export function Hero() {
           ))}
         </h1>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 max-w-xl text-lg text-muted md:text-xl"
+          className="mt-8 max-w-xl"
         >
-          {POSITIONING}
-        </motion.p>
+          <p className="text-lg text-muted md:text-xl">{HERO_SUBHEAD_LINE1}</p>
+          <p className="mt-1 text-sm text-muted md:text-base">
+            {HERO_SUBHEAD_LINE2}
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}

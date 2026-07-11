@@ -16,6 +16,7 @@
   --color-muted: var(--muted);
 
   --font-sans: var(--font-sans);
+  --font-motto: var(--font-motto);
 }
 
 html {
