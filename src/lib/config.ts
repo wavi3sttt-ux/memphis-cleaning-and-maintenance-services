@@ -1,95 +1,217 @@
-export const SITE_NAME = "Memphis Cleaning Company";
+export const SITE_NAME = "Memphis Cleaning & Maintenance";
 export const WORDMARK = "MEMPHIS.";
-export const TAGLINE_LINES = ["We clean it.", "We watch it.", "We report it."];
-
-export const HERO_TAGLINE = [
-  { before: "We ", highlight: "clean", after: " it." },
-  { before: "We ", highlight: "watch", after: " it." },
-  { before: "We ", highlight: "report", after: " it." },
-];
-export const POSITIONING =
-  "Commercial cleaning for Birmingham — with photographic proof after every visit.";
 export const SITE_URL = "https://www.memphiscleaning.co.uk";
 
 export const CONTACT = {
-  email: "hello@memphiscleaning.co.uk",
-  phone: "0121 000 0000",
-  addressLine1: "Unit 4, Aston Cross Business Village",
-  addressLine2: "Birmingham, B6 5RQ",
-  companyRegPlaceholder: "Company No. 00000000",
+  email: "contact@memphispropertyservices.co.uk",
 };
 
-export const TRUST_SIGNALS = [
-  "COSHH COMPLIANT",
-  "FULLY INSURED",
-  "UNIFORMED STAFF",
-  "DIGITAL REPORTS",
+export const NAV_LINKS = [
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#contact", label: "Contact Us" },
+  { href: "#career", label: "Career" },
+  { href: "#sustainability", label: "Sustainability" },
 ];
 
-export type Service = {
-  slug: string;
-  index: string;
+export const HERO_HEADLINE = [
+  { before: "", highlight: "Cleaning", after: "." },
+  { before: "", highlight: "Maintenance", after: "." },
+  { before: "Handled ", highlight: "properly", after: "." },
+];
+
+export const POSITIONING =
+  "Cleaning and maintenance for residential blocks, student accommodation, and offices across Birmingham — with a trained eye for hazards on every visit.";
+
+export const CALL_OUT = {
+  label: "24 Hour Call Out",
+  phone: "00000000",
+};
+
+export const TAGLINE_LINES = ["We clean it.", "We watch it.", "We report it."];
+
+export const ABOUT_PARAGRAPHS = [
+  "Memphis Property Services was founded on a simple principle: a well-maintained property is a safe property.",
+  "Operating nationwide across the UK, we provide flexible cleaning and maintenance for residential blocks, student accommodation, and offices — built around each property's actual needs, not a fixed package. Every site is risk assessed before we begin work.",
+  "Having worked directly in property management, we know the pressures our clients face and the small issues that get missed between inspections. That's why every visit includes a trained eye for health and safety hazards, flagged and reported straight to the property manager before they escalate.",
+  "We work sustainably, operate fully insured and COSHH-compliant, and keep our practices transparent — so clients always know who's on-site and what standard we hold ourselves to.",
+  "We don't just clean properties. We look after them.",
+];
+
+export const CAREER_TEXT =
+  "Want to work with us? For career opportunities, please get in touch at";
+
+export const SUSTAINABILITY_VISION =
+  "Sustainability sits at the heart of how Memphis Property Services operates. We're building the company with a long-term view of how buildings, businesses, and the environment fit together — and that starts with our own day-to-day. We recycle all cardboard, plastic, and metal across every job, reuse packaging wherever possible, and run paperless invoicing as standard. We're actively reducing our carbon footprint through smarter routing, greener product choices, and cleaner on-site practice. Our aim is a zero-to-landfill operation — and we work closely with clients, contractors, and supply partners to encourage the same standard across every property we touch. Sustainable practice isn't a bolt-on for us. It's part of how we look after the properties, people, and places we work with.";
+
+export const SUSTAINABILITY_COMMITMENTS = [
+  "Recycle everything — cardboard, plastic, and metal separated and recycled on every job",
+  "Reuse packaging wherever it's safe and practical",
+  "Paperless invoicing — all invoicing, reports, and documentation delivered digitally",
+  "Carbon reduction through smarter routing, greener products, and lower-impact site practice",
+  "Driving toward zero waste to landfill across our operations",
+  "Working with clients and supply partners to promote zero-to-landfill and shared sustainability standards",
+];
+
+export type ServiceItem = {
+  icon: string;
   name: string;
   description: string;
-  longDescription: string;
 };
 
-export const SERVICES: Service[] = [
+export type ServiceGroup = {
+  id: string;
+  title: string;
+  items: ServiceItem[];
+};
+
+export const SERVICE_GROUPS: ServiceGroup[] = [
   {
-    slug: "communal-area-cleaning",
-    index: "01",
-    name: "Communal Area Cleaning",
-    description:
-      "Stairwells, lobbies, corridors kept spotless week in, week out.",
-    longDescription:
-      "Scheduled communal cleaning for blocks of flats and managed developments — stairwells, lobbies, corridors, lifts, and communal windows kept to a consistent standard, with every visit backed by a photo report for your managing agent or RMC.",
+    id: "cleaning",
+    title: "Cleaning",
+    items: [
+      {
+        icon: "Building2",
+        name: "Residential Blocks",
+        description:
+          "Communal areas, stairwells, entryways, and shared spaces kept spotless for residents and visitors.",
+      },
+      {
+        icon: "Briefcase",
+        name: "Offices",
+        description:
+          "Daily and periodic cleaning fitted around your business hours to keep workspaces hygienic and presentable.",
+      },
+      {
+        icon: "GraduationCap",
+        name: "Student Accommodation",
+        description:
+          "Turnaround cleans, communal areas, and rolling maintenance for private halls and PBSAs.",
+      },
+      {
+        icon: "ClipboardList",
+        name: "Block Management",
+        description:
+          "Reliable, scheduled cleaning across managed portfolios with consistent standards site to site.",
+      },
+      {
+        icon: "HeartHandshake",
+        name: "Hostels, Homeless Shelters & Temporary Accommodation",
+        description:
+          "Sensitive, high-frequency cleaning built for high-footfall, high-turnover environments.",
+      },
+      {
+        icon: "KeyRound",
+        name: "Short Lets & Airbnbs",
+        description:
+          "Rapid turnaround cleans between guests, linen changes, and presentation-ready finishes.",
+      },
+      {
+        icon: "HardHat",
+        name: "Construction Sites",
+        description:
+          "Post-build and ongoing site cleans, including sparkle cleans handed over ready for occupation.",
+      },
+    ],
   },
   {
-    slug: "end-of-tenancy-cleans",
-    index: "02",
-    name: "End-of-Tenancy Cleans",
-    description: "Turnover-ready flats for landlords and letting agents.",
-    longDescription:
-      "Fast, thorough turnaround cleans between tenancies — kitchens, bathrooms, carpets, and fixtures brought back to a lettable standard, with photo evidence to support deposit returns and move-in checks.",
+    id: "specialist-cleaning",
+    title: "Specialist Cleaning",
+    items: [
+      {
+        icon: "Sparkles",
+        name: "Deep Cleaning",
+        description:
+          "Intensive sanitisation of neglected or high-use areas beyond regular maintenance cleaning.",
+      },
+      {
+        icon: "Layers",
+        name: "Carpet Cleaning",
+        description:
+          "Hot water extraction, stain treatment, and deodorising for carpets and soft flooring.",
+      },
+      {
+        icon: "SprayCan",
+        name: "Graffiti Removal",
+        description:
+          "Chemical and pressure-based removal from exterior surfaces without damaging the substrate.",
+      },
+      {
+        icon: "ShieldAlert",
+        name: "Mould Removal",
+        description:
+          "Safe treatment and remediation of mould in bathrooms, communal areas, and problem walls.",
+      },
+      {
+        icon: "Droplets",
+        name: "Jet Wash",
+        description:
+          "External hard surface cleaning for pathways, forecourts, patios, and facades.",
+      },
+      {
+        icon: "Trash2",
+        name: "Bin Store Deep Clean",
+        description:
+          "Full sanitisation and deodorising of communal waste stores, tackling odour and pest risk.",
+      },
+    ],
   },
   {
-    slug: "student-accommodation",
-    index: "03",
-    name: "Student Accommodation",
-    description: "Bulk turnovers between academic terms, on schedule.",
-    longDescription:
-      "High-volume turnaround cleaning across entire blocks between semesters, timed tightly around academic calendars, with unit-by-unit digital reporting so accommodation providers can sign off move-in ready rooms fast.",
-  },
-  {
-    slug: "office-cleaning",
-    index: "04",
-    name: "Office Cleaning",
-    description: "Daily or contract cleaning for Birmingham workplaces.",
-    longDescription:
-      "Daily, weekly, or bespoke contract cleaning for offices and workplaces — desks, kitchens, washrooms, and communal areas maintained by uniformed teams, with reporting that flags consumables and maintenance issues as they arise.",
-  },
-  {
-    slug: "deep-cleans-sanitisation",
-    index: "05",
-    name: "Deep Cleans & Sanitisation",
-    description: "COSHH-compliant deep cleans on demand.",
-    longDescription:
-      "One-off and periodic deep cleans using COSHH-compliant products and processes — ideal for post-construction handovers, incident response, or periodic resets between contract cleans.",
-  },
-  {
-    slug: "grounds-bin-store-cleaning",
-    index: "06",
-    name: "Grounds & Bin Store Cleaning",
-    description: "Exterior areas maintained to the same standard.",
-    longDescription:
-      "Bin store jet-washing, external walkways, car parks, and grounds maintenance kept to the same photo-reported standard as the inside of the building — no blind spots in your contract.",
+    id: "maintenance",
+    title: "Maintenance",
+    items: [
+      {
+        icon: "Wrench",
+        name: "General Handyman",
+        description:
+          "Small repairs, fixings, and general upkeep to catch issues before they escalate.",
+      },
+      {
+        icon: "Flower2",
+        name: "Gardening",
+        description:
+          "Regular garden care, hedging, weeding, and seasonal upkeep for communal outdoor spaces.",
+      },
+      {
+        icon: "Trees",
+        name: "Grounds Maintenance",
+        description:
+          "Ongoing maintenance of larger external areas including car parks, paths, and green spaces.",
+      },
+      {
+        icon: "PaintRoller",
+        name: "Painting & Decorating",
+        description:
+          "Interior and exterior painting for communal areas, void properties, and refurb projects.",
+      },
+      {
+        icon: "Zap",
+        name: "Gas & Electric",
+        description:
+          "Certified engineers for servicing, safety checks, repairs, and installations.",
+      },
+      {
+        icon: "LayoutGrid",
+        name: "Flooring",
+        description:
+          "Supply and installation of vinyl, laminate, carpet, and safety flooring for communal and private areas.",
+      },
+    ],
   },
 ];
 
-export const SECTORS = [
-  "Block Management",
+export const PROPERTY_TYPES = [
+  "Residential Block",
+  "Office",
   "Student Accommodation",
-  "Letting Agents",
-  "Offices",
-  "Short-Lets",
+  "HMO",
+  "Short Let",
+  "Construction Site",
+  "Other",
+] as const;
+
+export const FORM_SERVICE_OPTIONS = [
+  "Cleaning",
+  "Specialist Cleaning",
+  "Maintenance",
 ] as const;

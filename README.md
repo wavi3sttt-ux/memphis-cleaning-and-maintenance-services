@@ -18,7 +18,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter.
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in as needed. The quote form (`/api/quote`) and contact form (`/api/contact`) both work without any of these set — submissions are logged server-side instead of emailed, and each form still shows its success confirmation.
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `RESEND_API_KEY` | No | [Resend](https://resend.com) API key. Without it, submissions are only logged to the server console. |
+| `RESEND_FROM_EMAIL` | No | Verified "from" address for outgoing emails. Defaults to Resend's shared testing domain (`onboarding@resend.dev`). |
+| `QUOTE_TO_EMAIL` | No | Overrides the "to" address for quote requests. Defaults to `CONTACT.email` in `src/lib/config.ts`. |
+| `CONTACT_TO_EMAIL` | No | Overrides the "to" address for general contact form messages. Defaults to `CONTACT.email` in `src/lib/config.ts`. |
 
 ## Learn More
 

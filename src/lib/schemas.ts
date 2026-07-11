@@ -1,16 +1,28 @@
 import { z } from "zod";
-import { SECTORS } from "@/lib/config";
+import { PROPERTY_TYPES, FORM_SERVICE_OPTIONS } from "@/lib/config";
 
 export const quoteFormSchema = z.object({
   name: z.string().min(2, "Enter your full name"),
-  company: z.string().min(2, "Enter your company name"),
+  company: z.string().optional(),
   email: z.string().email("Enter a valid email address"),
-  phone: z.string().min(7, "Enter a valid phone number"),
-  sector: z.enum([...SECTORS, "Other"], {
-    message: "Select a sector",
+  phone: z.string().optional(),
+  propertyType: z.enum(PROPERTY_TYPES, {
+    message: "Select a property type",
   }),
-  propertySize: z.string().min(1, "Tell us roughly how big the site is"),
-  message: z.string().min(10, "Give us a few more details"),
+  servicesNeeded: z
+    .array(z.enum(FORM_SERVICE_OPTIONS))
+    .min(1, "Select at least one service"),
+  location: z.string().min(2, "Enter a location or postcode"),
+  message: z.string().optional(),
 });
 
 export type QuoteFormValues = z.infer<typeof quoteFormSchema>;
+
+export const contactFormSchema = z.object({
+  name: z.string().min(2, "Enter your full name"),
+  email: z.string().email("Enter a valid email address"),
+  subject: z.string().min(2, "Enter a subject"),
+  message: z.string().min(10, "Enter your message"),
+});
+
+export type ContactFormValues = z.infer<typeof contactFormSchema>;

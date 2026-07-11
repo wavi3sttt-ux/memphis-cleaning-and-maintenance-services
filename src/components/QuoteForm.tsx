@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quoteFormSchema, type QuoteFormValues } from "@/lib/schemas";
-import { SECTORS } from "@/lib/config";
+import { PROPERTY_TYPES, FORM_SERVICE_OPTIONS } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
 const inputClasses =
@@ -12,15 +12,19 @@ const inputClasses =
 
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteFormSchema),
+    defaultValues: { servicesNeeded: [] },
   });
 
   async function onSubmit(values: QuoteFormValues) {
+    setSubmitError(false);
     const res = await fetch("/api/quote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,6 +32,8 @@ export function QuoteForm() {
     });
     if (res.ok) {
       setSubmitted(true);
+    } else {
+      setSubmitError(true);
     }
   }
 
@@ -35,10 +41,10 @@ export function QuoteForm() {
     return (
       <div className="flex flex-col items-start gap-2 border border-ink/10 bg-paper p-10">
         <p className="text-3xl font-bold leading-tight tracking-tight text-ink md:text-4xl">
-          Got it. We&apos;ll be in touch within 24 hours.
+          Nice one — we&apos;ll be in touch shortly.
         </p>
         <p className="text-muted">
-          Thanks for reaching out to Memphis Cleaning Company.
+          Thanks for reaching out to Memphis Cleaning &amp; Maintenance.
         </p>
       </div>
     );
@@ -58,7 +64,7 @@ export function QuoteForm() {
             {...register("name")}
           />
         </Field>
-        <Field label="Company" error={errors.company?.message}>
+        <Field label="Company / property name" error={errors.company?.message}>
           <input
             className={inputClasses}
             placeholder="Acme Block Management"
@@ -81,29 +87,70 @@ export function QuoteForm() {
             {...register("phone")}
           />
         </Field>
-        <Field label="Sector" error={errors.sector?.message}>
-          <select className={inputClasses} defaultValue="" {...register("sector")}>
+        <Field label="Property type" error={errors.propertyType?.message}>
+          <select
+            className={inputClasses}
+            defaultValue=""
+            {...register("propertyType")}
+          >
             <option value="" disabled>
-              Select a sector
+              Select a property type
             </option>
-            {SECTORS.map((sector) => (
-              <option key={sector} value={sector}>
-                {sector}
+            {PROPERTY_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {type}
               </option>
             ))}
-            <option value="Other">Other</option>
           </select>
         </Field>
-        <Field label="Property size" error={errors.propertySize?.message}>
+        <Field label="Location / postcode" error={errors.location?.message}>
           <input
             className={inputClasses}
-            placeholder="e.g. 40 flats / 8,000 sqft"
-            {...register("propertySize")}
+            placeholder="B6 5RQ"
+            {...register("location")}
           />
         </Field>
       </div>
 
-      <Field label="Tell us about the job" error={errors.message?.message}>
+      <Controller
+        name="servicesNeeded"
+        control={control}
+        render={({ field }) => (
+          <Field label="Services needed" error={errors.servicesNeeded?.message}>
+            <div className="flex flex-wrap gap-4">
+              {FORM_SERVICE_OPTIONS.map((option) => {
+                const checked = field.value?.includes(option) ?? false;
+                return (
+                  <label
+                    key={option}
+                    className={cn(
+                      "flex cursor-pointer items-center gap-2 border px-4 py-2.5 text-sm font-medium transition-colors",
+                      checked
+                        ? "border-ink bg-ink text-bg"
+                        : "border-ink/20 text-ink hover:border-ink"
+                    )}
+                  >
+                    <input
+                      type="checkbox"
+                      className="sr-only"
+                      checked={checked}
+                      onChange={(e) => {
+                        const next = e.target.checked
+                          ? [...(field.value ?? []), option]
+                          : (field.value ?? []).filter((v) => v !== option);
+                        field.onChange(next);
+                      }}
+                    />
+                    {option}
+                  </label>
+                );
+              })}
+            </div>
+          </Field>
+        )}
+      />
+
+      <Field label="Message" error={errors.message?.message}>
         <textarea
           rows={5}
           className={cn(inputClasses, "resize-none")}
@@ -119,6 +166,13 @@ export function QuoteForm() {
       >
         {isSubmitting ? "Sending..." : "Request a Quote"}
       </button>
+
+      {submitError && (
+        <p className="text-sm font-medium text-red">
+          Something went wrong sending that — please try again, or email us
+          directly.
+        </p>
+      )}
     </form>
   );
 }
@@ -133,12 +187,12 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <span className="text-sm font-semibold uppercase tracking-wide text-ink">
         {label}
       </span>
       {children}
       {error && <span className="text-sm font-medium text-red">{error}</span>}
-    </label>
+    </div>
   );
 }

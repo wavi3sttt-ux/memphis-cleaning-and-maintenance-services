@@ -18,10 +18,18 @@
   --font-sans: var(--font-sans);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans), sans-serif;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
 }
 
 @layer utilities {

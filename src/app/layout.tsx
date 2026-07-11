@@ -7,11 +7,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Commercial Cleaning, Birmingham`,
+    default: `${SITE_NAME} | Cleaning & Maintenance, Birmingham`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Commercial cleaning for Birmingham's block managers, student accommodation, and offices — with photographic proof after every visit.",
+    "Cleaning and maintenance for Birmingham's residential blocks, student accommodation, and offices — with a trained eye for hazards on every visit.",
 };
 
 export default function RootLayout({
