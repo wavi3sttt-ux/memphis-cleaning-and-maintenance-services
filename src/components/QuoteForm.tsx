@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 const inputClasses =
   "w-full border border-ink/20 bg-bg px-4 py-3 text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink";
 
+const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_QUOTE_URL;
+
 export function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -25,14 +27,35 @@ export function QuoteForm() {
 
   async function onSubmit(values: QuoteFormValues) {
     setSubmitError(false);
-    const res = await fetch("/api/quote", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    if (res.ok) {
-      setSubmitted(true);
-    } else {
+    try {
+      const res = await fetch(FORMSPREE_URL!, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New quote request from ${
+            values.company || values.name
+          } — Memphis Property Services`,
+          _replyto: values.email,
+          _format: "plain",
+          name: values.name,
+          company: values.company,
+          email: values.email,
+          phone: values.phone,
+          propertyType: values.propertyType,
+          location: values.location,
+          servicesNeeded: values.servicesNeeded.join(", "),
+          message: values.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
       setSubmitError(true);
     }
   }
@@ -169,8 +192,8 @@ export function QuoteForm() {
 
       {submitError && (
         <p className="text-sm font-medium text-red">
-          Something went wrong sending that — please try again, or email us
-          directly.
+          Something went wrong. Please try again or email us directly at
+          cleaningservices.memphis@gmail.com.
         </p>
       )}
     </form>

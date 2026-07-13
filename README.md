@@ -20,16 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter.
 
-## Environment Variables
+## Form Submissions
 
-Copy `.env.example` to `.env.local` and fill in as needed. The quote form (`/api/quote`) and contact form (`/api/contact`) both work without any of these set — submissions are logged server-side instead of emailed, and each form still shows its success confirmation.
+The contact form (`ContactForm.tsx`) and quote form (`QuoteForm.tsx`) submit directly to [Formspree](https://formspree.io) from the browser — there's no backend API route involved.
+
+Copy `.env.example` to `.env.local` and set both endpoint URLs, which you get from your Formspree dashboard (one form per endpoint):
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `RESEND_API_KEY` | No | [Resend](https://resend.com) API key. Without it, submissions are only logged to the server console. |
-| `RESEND_FROM_EMAIL` | No | Verified "from" address for outgoing emails. Defaults to `Memphis Property Services Website <onboarding@resend.dev>` (Resend's shared testing domain — swap once the business domain is verified in Resend). |
-| `QUOTE_TO_EMAIL` | No | Overrides the "to" address for quote requests. Defaults to the business inbox `cleaningservices.memphis@gmail.com`. |
-| `CONTACT_TO_EMAIL` | No | Overrides the "to" address for general contact form messages. Defaults to the business inbox `cleaningservices.memphis@gmail.com`. |
+| `NEXT_PUBLIC_FORMSPREE_CONTACT_URL` | Yes | Formspree endpoint the contact form POSTs to. |
+| `NEXT_PUBLIC_FORMSPREE_QUOTE_URL` | Yes | Formspree endpoint the quote form POSTs to. |
+
+Both are public (`NEXT_PUBLIC_`) since the browser needs them directly. Set the same variables in your deployment platform's environment settings (e.g. Netlify) for production.
 
 ## Learn More
 

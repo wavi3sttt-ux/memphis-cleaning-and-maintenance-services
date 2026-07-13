@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 const inputClasses =
   "w-full border border-ink/20 bg-bg px-4 py-3 text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink";
 
+const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_URL;
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -22,14 +24,29 @@ export function ContactForm() {
 
   async function onSubmit(values: ContactFormValues) {
     setSubmitError(false);
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    if (res.ok) {
-      setSubmitted(true);
-    } else {
+    try {
+      const res = await fetch(FORMSPREE_URL!, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `New enquiry from ${values.name} — Memphis Property Services`,
+          _replyto: values.email,
+          _format: "plain",
+          name: values.name,
+          email: values.email,
+          subject: values.subject,
+          message: values.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
       setSubmitError(true);
     }
   }
@@ -94,8 +111,8 @@ export function ContactForm() {
 
       {submitError && (
         <p className="text-sm font-medium text-red">
-          Something went wrong sending that — please try again, or email us
-          directly.
+          Something went wrong. Please try again or email us directly at
+          cleaningservices.memphis@gmail.com.
         </p>
       )}
     </form>
